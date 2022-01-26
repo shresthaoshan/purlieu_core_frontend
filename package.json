@@ -10,6 +10,7 @@
 		"react-dom": "^17.0.2"
 	},
 	"devDependencies": {
+		"@parcel/transformer-typescript-tsc": "^2.2.1",
 		"@types/react": "^17.0.38",
 		"@types/react-dom": "^17.0.11",
 		"parcel": "^2.2.1",
@@ -17,7 +18,7 @@
 		"typescript": "^4.5.5"
 	},
 	"scripts": {
-		"dev": "parcel public/index.html -p 3000",
+		"dev": "parcel public/index.html -p 3000 --lazy --open",
 		"build": "parcel build public/index.html --dist-dir build/ --no-source-maps",
 		"serve": "serve -s build"
 	}
