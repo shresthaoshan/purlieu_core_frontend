@@ -1,0 +1,24 @@
+{
+	"name": "frontier",
+	"version": "1.0.0",
+	"description": "Web-front for core system of Purlieu.",
+	"author": "Oshan Shrestha <os02411418@student.ku.edu.np>",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	},
+	"devDependencies": {
+		"@types/react": "^17.0.38",
+		"@types/react-dom": "^17.0.11",
+		"parcel": "^2.2.1",
+		"serve": "^13.0.2",
+		"typescript": "^4.5.5"
+	},
+	"scripts": {
+		"dev": "parcel public/index.html -p 3000",
+		"build": "parcel build public/index.html --dist-dir build/ --no-source-maps",
+		"serve": "serve -s build"
+	}
+}
