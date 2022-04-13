@@ -1,0 +1,55 @@
+import React from "react";
+import styled from "styled-components";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
+export const DashBoard = () => {
+  return (
+    <STabs>
+      <STabList>
+        <STab>Account</STab>
+        <STab>Credentials</STab>
+        <STab>Delete Account</STab>
+      </STabList>
+      <TabContents>
+        <STabPanel>dw</STabPanel>
+        <STabPanel>wdwa</STabPanel>
+        <STabPanel>dw</STabPanel>
+      </TabContents>
+    </STabs>
+  );
+};
+
+export const DashBoardContainer = styled.div`
+  /* width: 95%;
+  margin: auto; */
+`;
+// export const DashBoardContent = styled.div`
+//   display: flex;
+//   /* padding: 3rem 0 4rem 0; */
+// `;
+export const SideBarSection = styled.div`
+  /* display: flex; */
+  /* box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1),
+    0px 3.2px 7.2px rgba(0, 0, 0, 0.3); */
+  width: 20rem;
+  /* box-shadow: 0 3px 6px rgba(40, 40, 40, 0.3); */
+  box-shadow: 5px 0 2px -5px #333;
+  padding: 3rem 0 4rem 0;
+`;
+export const SideBarContent = styled.div`
+  /* display: flex; */
+  padding: 3rem 0 4rem 0;
+
+  /* box-shadow: inset 11px 4px 9px -15px rgba(0, 0, 0, 0.75); */
+`;
+export const STabs = styled(Tabs)`
+  display: flex;
+  /* list-style: none; */
+`;
+
+export const STabList = styled(TabList)`
+  list-style: none;
+`;
+export const STab = styled(Tab)``;
+export const STabPanel = styled(TabPanel)``;
+export const TabContents = styled.div``;
