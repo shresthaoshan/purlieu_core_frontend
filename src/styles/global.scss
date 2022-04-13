@@ -1,0 +1,17 @@
+* {
+	box-sizing: border-box;
+
+	--ff-main: "Jost", sans-serif;
+	--ff-secondary: "Metrophobic", sans-serif;
+	--ff-normal: "Work Sans", sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--ff-main);
+}
+
+button {
+	cursor: pointer;
+}

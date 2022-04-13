@@ -6,19 +6,23 @@
 	"license": "MIT",
 	"private": true,
 	"dependencies": {
+		"@reduxjs/toolkit": "^1.8.1",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+		"react-redux": "^7.2.8",
+		"react-router-dom": "6"
 	},
 	"devDependencies": {
+		"@parcel/transformer-sass": "^2.2.1",
 		"@parcel/transformer-typescript-tsc": "^2.2.1",
 		"@types/react": "^17.0.38",
 		"@types/react-dom": "^17.0.11",
-		"parcel": "^2.2.1",
+		"parcel": "2.4",
 		"serve": "^13.0.2",
 		"typescript": "^4.5.5"
 	},
 	"scripts": {
-		"dev": "parcel public/index.html -p 3000 --lazy --open",
+		"dev": "parcel public/index.html -p 3005 --lazy --open",
 		"build": "parcel build public/index.html --dist-dir build/ --no-source-maps",
 		"serve": "serve -s build"
 	}
