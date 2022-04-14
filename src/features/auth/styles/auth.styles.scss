@@ -62,12 +62,7 @@
 					background: transparent;
 					border-radius: 30px;
 					border: 2px solid lightgrey;
-					font-family: var(--ff-main);
-
-					&[type="password"] {
-						font-size: 24px;
-						line-height: 1;
-					}
+					font-family: var(--ff-secondary);
 				}
 			}
 			.help {
@@ -111,7 +106,7 @@
 		font-size: 14px;
 
 		&.exist {
-			border: 1px solid lightgrey;
+			border: 1px solid #dd3434;
 			border-radius: 10px;
 		}
 	}

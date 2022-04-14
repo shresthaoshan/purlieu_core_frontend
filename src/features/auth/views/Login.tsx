@@ -1,14 +1,35 @@
-import React from "react";
+import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import * as authApi from "../../../api/auth.api";
+import { AuthCredentials } from "../../../types/auth";
 
 const Login = () => {
+	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
+
+	const dispatch = useDispatch();
+
+	const onSubmit: FormEventHandler = (e) => {
+		e.preventDefault();
+		dispatch(authApi.login(creds.email, creds.password));
+	};
+
+	const onChange =
+		(field: "email" | "password"): ChangeEventHandler<HTMLInputElement> =>
+		(e) => {
+			setCreds({
+				...creds,
+				[field]: e.target.value,
+			});
+		};
+
 	return (
 		<div className="auth__login">
 			<div className="auth__login-header">
 				<h1>Login</h1>
 				<small>Continue where you left off...</small>
 			</div>
-			<form>
+			<form onSubmit={onSubmit}>
 				<div className="form__field">
 					<label htmlFor="email">Email</label>
 					<input
@@ -19,6 +40,7 @@ const Login = () => {
 						required
 						autoComplete="none"
 						autoCorrect="off"
+						onChange={onChange("email")}
 					/>
 				</div>
 				<div className="form__field">
@@ -31,6 +53,7 @@ const Login = () => {
 						required
 						autoComplete="none"
 						autoCorrect="off"
+						onChange={onChange("password")}
 					/>
 				</div>
 				<p className="help">Forgot Password?</p>

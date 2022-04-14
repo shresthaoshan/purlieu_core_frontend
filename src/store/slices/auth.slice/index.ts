@@ -1,22 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import * as reducers from "./reducers";
 
-interface iAuth {
+export interface iAuth {
 	email: string;
-	apiKey: string;
-	status: "LOGGEDIN" | "LOGGEDOUT" | "FAILED" | "IDLE";
+	status: "LOGGEDIN" | "REGISTERED" | "LOGGEDOUT" | "FAILED" | "IDLE";
 	error?: string;
+	accessToken: string;
+	refreshToken: string;
 }
 
 const initialState: iAuth = {
 	email: "",
-	apiKey: "",
+	accessToken: "",
+	refreshToken: "",
 	status: "IDLE",
 };
 
-const authSlice = createSlice<iAuth, {}, "auth">({
+const authSlice = createSlice({
 	name: "auth",
 	initialState,
-	reducers: {},
+	reducers,
 });
 
 export const authReducer = authSlice.reducer;

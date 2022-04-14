@@ -5,22 +5,39 @@ import AuthModule from "../features/auth";
 // auth
 import Login from "../features/auth/views/Login";
 import Register from "../features/auth/views/Register";
+import { useAppSelector } from "../store";
 
 // normal
-import { Home } from "../views/Home";
+import Overview from "../features/dashboard/views/Overview";
 
 const AppRoutes = () => {
 	const location = useLocation();
 
+	const authStatus = useAppSelector((state) => state.authReducer.status);
+
 	return (
 		<Routes location={location}>
-			<Route index element={<Navigate to="auth/login" />} />
+			{authStatus === "LOGGEDIN" ? (
+				<>
+					<Route index element={<Navigate to="dashboard" />} />
+					<Route path="dashboard" element={<Overview />} />
+				</>
+			) : (
+				<>
+					<Route index element={<Navigate to="auth/login" state={{ from: location }} />} />
+					<Route path="/*" element={<Navigate to="auth/login" state={{ from: location }} />} />
+				</>
+			)}
 			{/* Auth */}
-			<Route path="auth" element={<AuthModule />}>
-				<Route index element={<Navigate to="login" />} />
-				<Route path="login" element={<Login />} />
-				<Route path="register" element={<Register />} />
-			</Route>
+			{authStatus !== "LOGGEDIN" ? (
+				<Route path="auth" element={<AuthModule />}>
+					<Route index element={<Navigate to="login" />} />
+					<Route path="login" element={<Login />} />
+					<Route path="register" element={<Register />} />
+				</Route>
+			) : (
+				<Route path="auth/*" element={<Navigate to="/" replace state={{ from: location }} />} />
+			)}
 		</Routes>
 	);
 };

@@ -1,11 +1,36 @@
-import React, { FormEventHandler } from "react";
-import { Link } from "react-router-dom";
+import React, { ChangeEventHandler, FormEventHandler, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import * as authApi from "../../../api/auth.api";
+import { useAppSelector } from "../../../store";
+import { AuthCredentials } from "../../../types/auth";
 
 const Register = () => {
+	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
+	const { status } = useAppSelector((state) => state.authReducer);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (status === "REGISTERED") {
+			navigate("/auth/login");
+		}
+	}, [status]);
+
 	const onSubmit: FormEventHandler = (e) => {
 		e.preventDefault();
-		// @todo call api
+		dispatch(authApi.register(creds.email, creds.password));
 	};
+
+	const onChange =
+		(field: "email" | "password"): ChangeEventHandler<HTMLInputElement> =>
+		(e) => {
+			setCreds({
+				...creds,
+				[field]: e.target.value,
+			});
+		};
 
 	return (
 		<div className="auth__login">
@@ -23,7 +48,7 @@ const Register = () => {
 						placeholder="admin@domain.com"
 						required
 						autoComplete="none"
-						autoCorrect="off"
+						onChange={onChange("email")}
 					/>
 				</div>
 				<div className="form__field">
@@ -35,8 +60,8 @@ const Register = () => {
 						placeholder="Minimum 8 characters*"
 						required
 						autoComplete="none"
-						autoCorrect="off"
 						minLength={8}
+						onChange={onChange("password")}
 					/>
 				</div>
 				<div className="controls">
