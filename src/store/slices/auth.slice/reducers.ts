@@ -20,8 +20,10 @@ export const error: CaseReducer<iAuth, PayloadAction<string>> = (state, action) 
 };
 
 export const logout: CaseReducer<iAuth> = (state) => {
-	state = {
-		...initialState,
-		status: "LOGGEDOUT",
-	};
+	state.accessToken = initialState.accessToken;
+	state.email = initialState.email;
+	state.refreshToken = initialState.refreshToken;
+	state.error = initialState.error;
+	state.status = "LOGGEDOUT";
+	return state;
 };
