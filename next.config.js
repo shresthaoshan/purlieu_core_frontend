@@ -3,7 +3,7 @@ module.exports = {
 		return [
 			{
 				source: "/:path*",
-				destination: "/:path*",
+				destination: "/",
 			},
 		];
 	},
