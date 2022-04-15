@@ -29,7 +29,7 @@
 		"typescript": "^4.5.5"
 	},
 	"scripts": {
-		"dev": "parcel public/index.html -p 3006 --lazy --open",
+		"dev": "parcel public/index.html -p 3000 --lazy --open",
 		"build": "parcel build public/index.html --dist-dir build/ --no-source-maps",
 		"serve": "serve -s build"
 	}
