@@ -1,8 +1,10 @@
 import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { AuthCredentials } from "../../../types/auth";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 import * as authApi from "../../../api/auth.api";
-import { AuthCredentials } from "../../../types/auth";
 
 const Login = () => {
 	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
@@ -24,7 +26,13 @@ const Login = () => {
 		};
 
 	return (
-		<div className="auth__login">
+		<motion.div
+			key="page__auth__login"
+			initial={{ opacity: 0, x: 70 }}
+			exit={{ opacity: 0, x: -70 }}
+			animate={{ opacity: 1, x: 0 }}
+			className="auth__login"
+		>
 			<div className="auth__login-header">
 				<h1>Login</h1>
 				<small>Continue where you left off...</small>
@@ -64,7 +72,7 @@ const Login = () => {
 					</p>
 				</div>
 			</form>
-		</div>
+		</motion.div>
 	);
 };
 

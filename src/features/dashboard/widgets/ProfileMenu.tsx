@@ -1,9 +1,11 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { useAppDispatch } from "../../../store";
 import { authActions } from "../../../store/slices/auth.slice";
 import useAuth from "../../auth/hooks/useAuth";
 
-import { m } from "framer-motion";
+import { VscSignOut } from "react-icons/vsc";
+
+import { AnimatePresence, motion } from "framer-motion";
 
 const ProfileMenu = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -14,24 +16,46 @@ const ProfileMenu = () => {
 	const updateMenuVisibility = () => setShowMenu(!showMenu);
 
 	const onLogout: MouseEventHandler = (e) => {
-		console.log({ msg: "Clicked..." });
 		e.preventDefault();
 		e.stopPropagation();
 		dispatch(authActions.logout());
 	};
 
+	useEffect(() => {
+		const handler = () => showMenu && setShowMenu(false);
+
+		document.addEventListener("click", handler);
+
+		return () => {
+			document.removeEventListener("click", handler);
+		};
+	});
+
 	return (
 		<>
 			<div className="control__profile" onClick={updateMenuVisibility}>
 				<img src={`https://avatars.dicebear.com/api/miniavs/${email}.svg`} alt={email} />
-				{showMenu ? (
-					<m.div className="control__profile-menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-						<ul>
-							<li className="label">Actions</li>
-							<li onClick={onLogout}>Logout</li>
-						</ul>
-					</m.div>
-				) : null}
+				<AnimatePresence>
+					{showMenu ? (
+						<motion.div
+							key="profile__menu_control_anim"
+							className="control__profile-menu"
+							initial={{ opacity: 0, x: -30 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, scale: 0 }}
+						>
+							<ul>
+								{/* <li className="label">Logged in as:</li> */}
+								<li className="label info">{email}</li>
+								<hr />
+								<li className="label">Actions</li>
+								<li onClick={onLogout}>
+									<VscSignOut size={20} /> Logout
+								</li>
+							</ul>
+						</motion.div>
+					) : null}
+				</AnimatePresence>
 			</div>
 		</>
 	);

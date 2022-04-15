@@ -1,10 +1,12 @@
 import React, { ChangeEventHandler, FormEventHandler, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import * as authApi from "../../../api/auth.api";
-import { useAppSelector } from "../../../store";
 import { AuthCredentials } from "../../../types/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import useAuth from "../hooks/useAuth";
+import * as authApi from "../../../api/auth.api";
+
+import { motion } from "framer-motion";
 
 const Register = () => {
 	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
@@ -34,7 +36,13 @@ const Register = () => {
 		};
 
 	return (
-		<div className="auth__login">
+		<motion.div
+			key="page__auth__register"
+			initial={{ opacity: 0, x: 70 }}
+			exit={{ opacity: 0, x: -70 }}
+			animate={{ opacity: 1, x: 0 }}
+			className="auth__login"
+		>
 			<div className="auth__login-header">
 				<h1>Register</h1>
 				<small>Doorway to unified services...</small>
@@ -72,7 +80,7 @@ const Register = () => {
 					</p>
 				</div>
 			</form>
-		</div>
+		</motion.div>
 	);
 };
 

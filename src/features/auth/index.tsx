@@ -1,7 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import AppLogo from "../../components/widgets/AppLogo";
 import { useAppSelector } from "../../store";
+
+import AppLogo from "../../components/widgets/AppLogo";
 
 import "./styles/auth.styles.scss";
 

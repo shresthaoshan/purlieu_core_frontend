@@ -5,7 +5,7 @@ import AppRoutes from "./routes";
 
 const App = () => {
 	return (
-		<AnimatePresence exitBeforeEnter>
+		<AnimatePresence>
 			<BrowserRouter>
 				<AppRoutes />
 			</BrowserRouter>
