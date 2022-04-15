@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import { iAuth } from ".";
+import { iAuth, initialState } from ".";
 
 export const login: CaseReducer<iAuth, PayloadAction<{ accessToken: string; refreshToken: string; email: string }>> = (state, action) => {
 	state.status = "LOGGEDIN";
@@ -17,4 +17,11 @@ export const register: CaseReducer<iAuth> = (state) => {
 export const error: CaseReducer<iAuth, PayloadAction<string>> = (state, action) => {
 	state.status = "FAILED";
 	state.error = action.payload;
+};
+
+export const logout: CaseReducer<iAuth> = (state) => {
+	state = {
+		...initialState,
+		status: "LOGGEDOUT",
+	};
 };

@@ -9,7 +9,7 @@ export interface iAuth {
 	refreshToken: string;
 }
 
-const initialState: iAuth = {
+export const initialState: iAuth = {
 	email: "",
 	accessToken: "",
 	refreshToken: "",

@@ -15,3 +15,13 @@ body {
 button {
 	cursor: pointer;
 }
+
+.app__logo {
+	font-family: var(--ff-normal);
+	color: purple;
+	user-select: none;
+
+	h2 {
+		margin: 10px 0;
+	}
+}

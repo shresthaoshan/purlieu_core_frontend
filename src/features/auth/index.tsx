@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import AppLogo from "../../components/widgets/AppLogo";
 import { useAppSelector } from "../../store";
 
 import "./styles/auth.styles.scss";
@@ -9,9 +10,7 @@ const AuthModule = () => {
 	return (
 		<div className="auth__page">
 			<div className="auth__container">
-				<div className="auth__logo">
-					<h2>Purlieu</h2>
-				</div>
+				<AppLogo />
 				<Outlet />
 				{/* add exist to classname  */}
 				<div className={`auth__error ${error && "exist"}`}>{error && <p className="error">Credentials invalid.</p>}</div>

@@ -20,7 +20,11 @@ const AppRoutes = () => {
 			{authStatus === "LOGGEDIN" ? (
 				<>
 					<Route index element={<Navigate to="dashboard" />} />
-					<Route path="dashboard" element={<Overview />} />
+					<Route path="dashboard" element={<Overview />}>
+						<Route path="apps" />
+						<Route path="transactions" />
+						<Route path="preferences" />
+					</Route>
 				</>
 			) : (
 				<>

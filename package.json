@@ -8,9 +8,11 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.8.1",
 		"axios": "^0.26.1",
+		"framer-motion": "^6.3.0",
 		"jwt-decode": "^3.1.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-icons": "^4.3.1",
 		"react-redux": "^7.2.8",
 		"react-router-dom": "6",
 		"redux-persist": "^6.0.0"
@@ -27,7 +29,7 @@
 		"typescript": "^4.5.5"
 	},
 	"scripts": {
-		"dev": "parcel public/index.html -p 3005 --lazy --open",
+		"dev": "parcel public/index.html -p 3006 --lazy --open",
 		"build": "parcel build public/index.html --dist-dir build/ --no-source-maps",
 		"serve": "serve -s build"
 	}

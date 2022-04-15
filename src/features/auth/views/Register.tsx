@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import * as authApi from "../../../api/auth.api";
 import { useAppSelector } from "../../../store";
 import { AuthCredentials } from "../../../types/auth";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
 	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
-	const { status } = useAppSelector((state) => state.authReducer);
+	const { status } = useAuth();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
