@@ -38,7 +38,6 @@
 				border-radius: 50%;
 				padding: 2px;
 				border: 1px solid lightgray;
-				cursor: pointer;
 				position: relative;
 
 				img {
@@ -47,18 +46,31 @@
 					object-fit: cover;
 					background-color: #e3e3e3;
 					border-radius: 50%;
+					cursor: pointer;
 					overflow: hidden;
 				}
 
 				.control__profile-menu {
 					position: absolute;
 					top: 0%;
-					right: -115%;
+					right: 125%;
 
 					background-color: #fff;
 					box-shadow: 4px 4px 6px rgba($color: #e3e3e3, $alpha: 0.4), -4px -4px 6px rgba($color: #e3e3e3, $alpha: 0.4);
 					padding: 10px 20px;
 					border-radius: 15px;
+
+					li {
+						cursor: pointer;
+						margin-left: 5px;
+
+						&.label {
+							font-size: 12px;
+							color: gray;
+							margin: 5px 0;
+							cursor: initial;
+						}
+					}
 				}
 			}
 		}

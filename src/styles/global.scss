@@ -12,8 +12,14 @@ body {
 	font-family: var(--ff-main);
 }
 
+// default overrides
 button {
 	cursor: pointer;
+}
+ul {
+	padding: 0;
+
+	list-style: none;
 }
 
 .app__logo {

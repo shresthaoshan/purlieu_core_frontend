@@ -10,9 +10,6 @@ const Header = () => {
 			<div className="controls">
 				<ProfileMenu />
 			</div>
-			<div className="sep">
-				<h2>Cclask</h2>
-			</div>
 		</div>
 	);
 };

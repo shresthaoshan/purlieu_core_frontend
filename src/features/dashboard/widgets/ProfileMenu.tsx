@@ -9,6 +9,7 @@ const ProfileMenu = () => {
 	const dispatch = useAppDispatch();
 
 	const onLogout: MouseEventHandler = (e) => {
+		console.log({ msg: "Clicked..." });
 		e.preventDefault();
 		e.stopPropagation();
 		dispatch(authActions.logout());
