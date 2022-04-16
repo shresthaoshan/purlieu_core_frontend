@@ -29,5 +29,11 @@ ul {
 
 	h2 {
 		margin: 10px 0;
+
+		span {
+			font-size: 1em;
+			color: #444;
+			font-family: var(--ff-secondary);
+		}
 	}
 }

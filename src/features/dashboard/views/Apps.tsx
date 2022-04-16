@@ -1,15 +1,17 @@
 import React, { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../../../store";
+import { useAppsApi } from "../../../api/apps.api";
 import { useApps } from "../hooks/useApps";
 
-import "../styles/apps.styles.scss";
 import { Link } from "react-router-dom";
-import { useAppsApi } from "../../../api/apps.api";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { IoIosRefresh } from "react-icons/io";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { FiAlertTriangle } from "react-icons/fi";
+
 import DashboardHeading from "../widgets/DashboardHeading";
+
+import "../styles/apps.styles.scss";
 
 const Apps = () => {
 	const { apps, status } = useApps();
@@ -23,7 +25,8 @@ const Apps = () => {
 		// eslint-disable-next-line
 	}, []);
 
-	const reFetchApps = () => (status === "FAILED" || status === "HASDATA") && dispatch(appsApi.fetchAll());
+	// disallow refetching when loading
+	const reFetchApps = () => status !== "LOADING" && dispatch(appsApi.fetchAll());
 
 	const getAvatarUrl = useCallback((seed: string) => {
 		return `https://avatars.dicebear.com/api/initials/${seed}.svg`;
