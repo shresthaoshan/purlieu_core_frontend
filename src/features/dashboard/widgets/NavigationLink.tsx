@@ -7,6 +7,7 @@ interface NavigationLinkProps {
 	to: string;
 	label: string;
 	icon?: ReactNode;
+	end?: boolean;
 }
 
 const NavigationLink = ({ to, label, icon, ...otherProps }: NavigationLinkProps) => {

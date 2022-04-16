@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as reducers from "./reducers";
 
-export interface iAuth {
+export interface rAuth {
 	email: string;
-	status: "LOGGEDIN" | "REGISTERED" | "LOGGEDOUT" | "FAILED" | "IDLE";
+	status: "LOGGEDIN" | "REGISTERED" | "LOGGEDOUT" | "LOADING" | "FAILED" | "IDLE";
 	error?: string;
 	accessToken: string;
 	refreshToken: string;
 }
 
-export const initialState: iAuth = {
+export const initialState: rAuth = {
 	email: "",
 	accessToken: "",
 	refreshToken: "",

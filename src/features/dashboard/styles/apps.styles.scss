@@ -1,0 +1,62 @@
+.apps {
+	width: 100%;
+	height: 100%;
+
+	.grid {
+		width: 100%;
+
+		display: grid;
+		grid-template-columns: repeat(2, 3fr);
+		gap: 25px;
+		grid-template-rows: 300px;
+
+		@media (min-width: 1080px) {
+			grid-template-columns: repeat(4, 3fr);
+		}
+		@media (min-width: 1440px) {
+			grid-template-columns: repeat(5, 3fr);
+		}
+		@media (min-width: 1780px) {
+			grid-template-columns: repeat(6, 3fr);
+		}
+	}
+
+	.app__item {
+		width: 100%;
+		height: 100%;
+		padding: 15px;
+
+		background-color: #fff;
+		box-shadow: 4px 4px 6px rgba($color: #e3e3e3, $alpha: 0.4), -4px -4px 6px rgba($color: #e3e3e3, $alpha: 0.4);
+		border-radius: 15px;
+
+		.add_icon {
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+
+			.icon {
+				width: 100%;
+				height: 100%;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				color: #666666;
+
+				svg {
+					transform: scale(2);
+				}
+			}
+		}
+
+		img {
+			border-radius: 15px;
+		}
+		h4 {
+			color: #292929;
+			margin: 5px 0;
+		}
+	}
+}

@@ -9,6 +9,7 @@ import { useAppSelector } from "../store";
 
 // normal
 import Overview from "../features/dashboard/views/Overview";
+import Apps from "../features/dashboard/views/Apps";
 
 const AppRoutes = () => {
 	const location = useLocation();
@@ -21,7 +22,7 @@ const AppRoutes = () => {
 				<>
 					<Route index element={<Navigate to="dashboard" />} />
 					<Route path="dashboard" element={<Overview />}>
-						<Route path="apps" />
+						<Route path="apps" element={<Apps />} />
 						<Route path="transactions" />
 						<Route path="preferences" />
 					</Route>
