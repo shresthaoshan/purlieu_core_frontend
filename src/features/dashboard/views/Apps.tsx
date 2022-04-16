@@ -62,7 +62,7 @@ const Apps = () => {
 					: null}
 
 				{/* register app icon */}
-				{status === "HASDATA" && apps.length < 8 ? (
+				{(status === "HASDATA" || status === "FAILED") && apps.length < 8 ? (
 					<div className="app__item">
 						<div className="add_icon">
 							<div className="icon">
