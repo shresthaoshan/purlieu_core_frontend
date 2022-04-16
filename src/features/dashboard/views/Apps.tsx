@@ -19,8 +19,7 @@ const Apps = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		// if (!apps.length)
-		dispatch(appsApi.fetchAll());
+		if (!apps.length) dispatch(appsApi.fetchAll());
 		// eslint-disable-next-line
 	}, []);
 
