@@ -18,10 +18,8 @@ const AppDetails = () => {
 	const { appDetail } = useApps();
 	const [localData, setLocalData] = useState<CApp>(() => appDetail);
 
-	const [editProperties, setEditProperties] = useState<{ name: boolean; url: boolean }>({
-		name: false,
-		url: false,
-	});
+	const [editName, setEditName] = useState<boolean>(false);
+	const [editCallback, setEditCallback] = useState<boolean>(false);
 
 	const dispatch = useAppDispatch();
 
@@ -42,18 +40,6 @@ const AppDetails = () => {
 			});
 		};
 
-	const editField = (field: "name" | "url") => () => {
-		let _edit = editProperties;
-		_edit[field] = !_edit[field];
-
-		console.log({ _edit });
-
-		setEditProperties({
-			...editProperties,
-			[field]: !editProperties[field],
-		});
-	};
-
 	return (
 		<div className="apps details">
 			<DashboardHeading
@@ -61,31 +47,33 @@ const AppDetails = () => {
 				actions={
 					<>
 						<Link to="/dashboard/apps">
-							<span onClick={editField("name")}>
+							<span>
 								<AiOutlineAppstore size={20} />
 							</span>
 						</Link>
 					</>
 				}
 			/>
-
 			<div className="detail__field">
 				<div className="columns">
 					<div className="meta">
 						<p className="label">Application Name</p>
-						{editProperties.name ? (
+						{editName ? (
 							<form>
 								<div className="form__field">
-									<input type="text" value={localData.name} onChange={localUpdate("name")} />
+									<input type="text" required value={localData.name} onChange={localUpdate("name")} />
 									<div className="controls">
 										<button type="submit">Update</button>
+										<button className="secondary" onClick={() => setEditName(false)}>
+											Cancel
+										</button>
 									</div>
 								</div>
 							</form>
 						) : (
 							<h3>
 								{appDetail.name}
-								<span>
+								<span onClick={() => setEditName(true)}>
 									<AiOutlineEdit />
 								</span>
 							</h3>
@@ -94,6 +82,34 @@ const AppDetails = () => {
 					<div className="date">
 						<p className="label">Registered On:</p>
 						<h4>{format(new Date(appDetail.registeredOn), "do MMM yyyy")}</h4>
+					</div>
+					<div className="meta">
+						<p className="label">Callback Url</p>
+						{editCallback ? (
+							<form>
+								<div className="form__field">
+									<input
+										type="text"
+										placeholder="*https://somedomain.com/webhook"
+										value={localData.callbackUrl || ""}
+										onChange={localUpdate("name")}
+									/>
+									<div className="controls">
+										<button type="submit">Update</button>
+										<button className="secondary" onClick={() => setEditCallback(false)}>
+											Cancel
+										</button>
+									</div>
+								</div>
+							</form>
+						) : (
+							<h4>
+								{appDetail.callbackUrl || <i>Not set!</i>}
+								<span onClick={() => setEditCallback(true)}>
+									<AiOutlineEdit />
+								</span>
+							</h4>
+						)}
 					</div>
 				</div>
 			</div>

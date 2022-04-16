@@ -5,15 +5,7 @@
 			"destination": "/"
 		},
 		{
-			"source": "/*/:path*",
-			"destination": "/"
-		},
-		{
-			"source": "/*/*/:path*",
-			"destination": "/"
-		},
-		{
-			"source": "/*/*/*/:path*",
+			"source": "/**/:path*",
 			"destination": "/"
 		}
 	]

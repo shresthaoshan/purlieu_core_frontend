@@ -14,17 +14,23 @@
 		}
 		.columns {
 			width: 100%;
-			display: flex;
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			grid-template-rows: 70px;
+			margin-bottom: 30px;
 
 			gap: 30px;
 
 			.meta {
 				flex: 0 0 70%;
 
-				h3 {
+				h3,
+				h4,
+				h5 {
 					span {
 						cursor: pointer;
 						margin-left: 10px;
+						color: purple;
 
 						svg {
 							transform: translateY(4px);
@@ -34,7 +40,7 @@
 
 				form {
 					margin-top: 5px;
-					width: 60%;
+					width: 75%;
 
 					.form__field {
 						flex-direction: row;
@@ -45,9 +51,17 @@
 					}
 					.controls {
 						width: fit-content;
+						flex-direction: row;
+						gap: 5px;
 
 						button {
 							padding: 10px 40px;
+
+							&.secondary {
+								background: #fff;
+								border: 1px solid purple;
+								color: purple;
+							}
 						}
 					}
 				}
