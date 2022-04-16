@@ -24,7 +24,7 @@ const Apps = () => {
 		// eslint-disable-next-line
 	}, []);
 
-	const reFetchApps = () => dispatch(appsApi.fetchAll());
+	const reFetchApps = () => (status === "FAILED" || status === "HASDATA") && dispatch(appsApi.fetchAll());
 
 	const getAvatarUrl = useCallback((seed: string) => {
 		return `https://avatars.dicebear.com/api/initials/${seed}.svg`;

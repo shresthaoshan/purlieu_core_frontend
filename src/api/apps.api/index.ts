@@ -19,6 +19,7 @@ export const useAppsApi = () => {
 		try {
 			dispatch(appActions.loading());
 			const { data } = await api.get<CApp[]>("/apps/list");
+			if (!data) throw new Error("No data.");
 			dispatch(appActions.fetchAll(data));
 		} catch (e: any) {
 			dispatch(appActions.error(e.config?.response?.error || e.message));
