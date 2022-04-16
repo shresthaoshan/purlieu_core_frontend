@@ -1,0 +1,60 @@
+.details {
+	.detail__field {
+		padding-top: 30px;
+
+		p,
+		h2,
+		h3,
+		h4 {
+			margin: 0;
+		}
+		p.label {
+			font-size: 14px;
+			color: #656565;
+		}
+		.columns {
+			width: 100%;
+			display: flex;
+
+			gap: 30px;
+
+			.meta {
+				flex: 0 0 70%;
+
+				h3 {
+					span {
+						cursor: pointer;
+						margin-left: 10px;
+
+						svg {
+							transform: translateY(4px);
+						}
+					}
+				}
+
+				form {
+					margin-top: 5px;
+					width: 60%;
+
+					.form__field {
+						flex-direction: row;
+
+						input {
+							flex: 1 1 100%;
+						}
+					}
+					.controls {
+						width: fit-content;
+
+						button {
+							padding: 10px 40px;
+						}
+					}
+				}
+			}
+			.date {
+				flex: 1 1 30%;
+			}
+		}
+	}
+}

@@ -22,3 +22,9 @@ export const error: CaseReducer<rApp, PayloadAction<string>> = (state, action) =
 	state.status = "FAILED";
 	state.error = action.payload;
 };
+
+export const selectApp: CaseReducer<rApp, PayloadAction<string>> = (state, action) => {
+	const _app = state.apps.find((item) => item.id === action.payload);
+	if (!_app) return state;
+	state.appDetail = _app;
+};

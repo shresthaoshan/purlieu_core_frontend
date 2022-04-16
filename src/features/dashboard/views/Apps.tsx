@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../../store";
 import { useAppsApi } from "../../../api/apps.api";
 import { useApps } from "../hooks/useApps";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { IoIosRefresh } from "react-icons/io";
 import { HiOutlineRefresh } from "react-icons/hi";
@@ -17,6 +17,7 @@ const Apps = () => {
 	const { apps, status } = useApps();
 
 	const appsApi = useAppsApi();
+	const navigate = useNavigate();
 
 	const dispatch = useAppDispatch();
 
@@ -31,6 +32,10 @@ const Apps = () => {
 	const getAvatarUrl = useCallback((seed: string) => {
 		return `https://avatars.dicebear.com/api/initials/${seed}.svg`;
 	}, []);
+
+	const nagivateToApp = (appId: string) => {
+		navigate(appId);
+	};
 
 	return (
 		<div className="apps">
@@ -54,12 +59,10 @@ const Apps = () => {
 				{/* app items */}
 				{status === "HASDATA"
 					? apps.map((app, index) => (
-							<Link key={`app_item_${index}`} to={app.id}>
-								<div className="app__item">
-									<img src={getAvatarUrl(app.name)} alt="icon" />
-									<h4>{app.name}</h4>
-								</div>
-							</Link>
+							<div key={`app_item_${index}`} className="app__item" onClick={() => nagivateToApp(app.id)}>
+								<img src={getAvatarUrl(app.name)} alt="icon" />
+								<h4>{app.name}</h4>
+							</div>
 					  ))
 					: null}
 

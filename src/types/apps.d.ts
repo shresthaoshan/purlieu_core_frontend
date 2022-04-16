@@ -2,7 +2,7 @@ export interface CApp {
 	id: string;
 	name: string;
 	adminId: string;
-	registeredOn: string;
+	registeredOn: Date;
 	callbackUrl?: any;
 }
 
