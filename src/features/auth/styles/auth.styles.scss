@@ -32,61 +32,6 @@
 		}
 	}
 	.auth__login {
-		form {
-			width: 100%;
-			margin: 0;
-			padding: 0;
-			display: flex;
-			flex-direction: column;
-			gap: 15px;
-
-			.form__field {
-				display: flex;
-				flex-direction: column;
-				gap: 10px;
-
-				label {
-					font-family: var(--ff-secondary);
-					font-size: 13px;
-					font-weight: 600;
-				}
-
-				input {
-					height: 43px;
-					padding: 10px 15px;
-					background: transparent;
-					border-radius: 30px;
-					border: 2px solid lightgrey;
-					font-family: var(--ff-secondary);
-				}
-			}
-			.help {
-				font-size: 14px;
-				font-weight: 500;
-				color: purple;
-			}
-			.controls {
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				align-items: flex-end;
-
-				p {
-					font-size: 13px;
-				}
-
-				button {
-					width: 100%;
-					font-family: var(--ff-main);
-					font-size: 15px;
-					padding: 10px 15px;
-					border-radius: 30px;
-					border: 0px;
-					background: purple;
-					color: white;
-				}
-			}
-		}
 	}
 	.auth__error {
 		height: 50px;

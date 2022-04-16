@@ -1,0 +1,16 @@
+.register {
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+
+	.form {
+		padding-top: 30px;
+		flex: 0 0 50%;
+	}
+	.info {
+		height: 200px;
+		flex: 1 1 50%;
+	}
+}

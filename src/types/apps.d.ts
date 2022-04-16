@@ -5,3 +5,8 @@ export interface CApp {
 	registeredOn: string;
 	callbackUrl?: any;
 }
+
+export interface AppRegisterDetails {
+	name: string;
+	callbackUrl?: string;
+}

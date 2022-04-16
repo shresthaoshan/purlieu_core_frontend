@@ -54,8 +54,8 @@ const Apps = () => {
 				{/* app items */}
 				{status === "HASDATA"
 					? apps.map((app, index) => (
-							<Link to={app.id}>
-								<div key={`app_item_${index}`} className="app__item">
+							<Link key={`app_item_${index}`} to={app.id}>
+								<div className="app__item">
 									<img src={getAvatarUrl(app.name)} alt="icon" />
 									<h4>{app.name}</h4>
 								</div>
@@ -65,13 +65,15 @@ const Apps = () => {
 
 				{/* register app icon */}
 				{(status === "HASDATA" || status === "FAILED") && apps.length < 8 ? (
-					<div className="app__item">
-						<div className="add_icon">
-							<div className="icon">
-								<AiOutlineAppstoreAdd size={40} />
+					<Link to="register">
+						<div className="app__item">
+							<div className="add_icon">
+								<div className="icon">
+									<AiOutlineAppstoreAdd size={40} />
+								</div>
 							</div>
 						</div>
-					</div>
+					</Link>
 				) : null}
 			</div>
 		</div>

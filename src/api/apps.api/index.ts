@@ -1,7 +1,7 @@
-import { Dispatch } from "@reduxjs/toolkit";
 import useAuth from "../../features/auth/hooks/useAuth";
+import { AppDispatch } from "../../store";
 import { appActions } from "../../store/slices/apps.slice";
-import { CApp } from "../../types/apps";
+import { AppRegisterDetails, CApp } from "../../types/apps";
 import api from "../../utils/api.util";
 
 export const useAppsApi = () => {
@@ -15,7 +15,7 @@ export const useAppsApi = () => {
 		return config;
 	});
 
-	const fetchAll = () => async (dispatch: Dispatch) => {
+	const fetchAll = () => async (dispatch: AppDispatch) => {
 		try {
 			dispatch(appActions.loading());
 			const { data } = await api.get<CApp[]>("/apps/list");
@@ -25,7 +25,7 @@ export const useAppsApi = () => {
 			dispatch(appActions.error(e.config?.response?.error || e.message));
 		}
 	};
-	const fetchOne = (appId: string) => async (dispatch: Dispatch) => {
+	const fetchOne = (appId: string) => async (dispatch: AppDispatch) => {
 		try {
 			dispatch(appActions.loading());
 			const { data } = await api.get<CApp>(`/apps/${appId}`);
@@ -35,8 +35,20 @@ export const useAppsApi = () => {
 		}
 	};
 
+	const register = (appDetails: AppRegisterDetails) => async (dispatch: AppDispatch) => {
+		try {
+			dispatch(appActions.loading());
+			const { data } = await api.post(`/apps/create`, appDetails);
+			console.log({ data });
+			dispatch(fetchAll());
+		} catch (e: any) {
+			dispatch(appActions.error(e.config?.response?.error || e.message));
+		}
+	};
+
 	return {
 		fetchAll,
 		fetchOne,
+		register,
 	};
 };

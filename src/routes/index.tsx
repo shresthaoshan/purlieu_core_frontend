@@ -10,6 +10,7 @@ import { useAppSelector } from "../store";
 // normal
 import Overview from "../features/dashboard/views/Overview";
 import Apps from "../features/dashboard/views/Apps";
+import RegisterApp from "../features/dashboard/views/RegisterApp";
 
 const AppRoutes = () => {
 	const location = useLocation();
@@ -23,6 +24,7 @@ const AppRoutes = () => {
 					<Route index element={<Navigate to="dashboard" />} />
 					<Route path="dashboard" element={<Overview />}>
 						<Route path="apps" element={<Apps />} />
+						<Route path="apps/register" element={<RegisterApp />} />
 						<Route path="transactions" />
 						<Route path="preferences" />
 					</Route>
