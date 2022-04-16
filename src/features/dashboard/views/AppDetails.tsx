@@ -14,6 +14,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 
 const AppDetails = () => {
 	const { appId = "" } = useParams();
+
 	const { appDetail } = useApps();
 	const [localData, setLocalData] = useState<CApp>(() => appDetail);
 
