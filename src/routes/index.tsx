@@ -12,6 +12,7 @@ import Overview from "../features/dashboard/views/Overview";
 import Apps from "../features/dashboard/views/Apps";
 import RegisterApp from "../features/dashboard/views/RegisterApp";
 import AppDetails from "../features/dashboard/views/AppDetails";
+import Transactions from "../features/dashboard/views/Transactions";
 
 const AppRoutes = () => {
 	const location = useLocation();
@@ -27,7 +28,7 @@ const AppRoutes = () => {
 						<Route path="apps" element={<Apps />} />
 						<Route path="apps/register" element={<RegisterApp />} />
 						<Route path="apps/:appId" element={<AppDetails />} />
-						<Route path="transactions" />
+						<Route path="transactions" element={<Transactions />} />
 						<Route path="preferences" />
 					</Route>
 				</>
