@@ -81,7 +81,7 @@ const AppDetails = () => {
 					</div>
 					<div className="date">
 						<p className="label">Registered On:</p>
-						<h4>{format(new Date(appDetail.registeredOn), "do MMM yyyy")}</h4>
+						<h4>{appDetail.registeredOn ? format(new Date(appDetail.registeredOn), "do MMM yyyy") : "Not specified."}</h4>
 					</div>
 					<div className="meta">
 						<p className="label">Callback Url</p>
