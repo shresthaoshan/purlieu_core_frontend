@@ -17,3 +17,4 @@ export const { useGetHistoryByAppIdQuery, useLazyGetHistoryByAppIdQuery } = hist
 
 export const historyReducer = historyApi.reducer;
 export const historyReducerPath = historyApi.reducerPath;
+export const historyApiMiddleware = historyApi.middleware;

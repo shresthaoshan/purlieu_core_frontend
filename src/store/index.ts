@@ -8,7 +8,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 // reducersb
 import { authReducer } from "./slices/auth.slice";
 import { appReducer } from "./slices/apps.slice";
-import { historyReducer, historyReducerPath } from "./api/history.api";
+import { historyApiMiddleware, historyReducer, historyReducerPath } from "./api/history.api";
 
 // combine reducers and persist
 const rootReducer = persistCombineReducers(
@@ -31,7 +31,7 @@ const serializableCheck = {
 const store = configureStore({
 	reducer: rootReducer,
 	devTools: true,
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck }).concat(historyApi.middleware),
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck }).concat(historyApiMiddleware),
 });
 
 setupListeners(store.dispatch);
