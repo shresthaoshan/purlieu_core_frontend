@@ -1,15 +1,25 @@
-import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
+import React, { ChangeEventHandler, FormEventHandler, useEffect, useState } from "react";
 import { AuthCredentials } from "../../../types/auth";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import * as authApi from "../../../api/auth.api";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
 	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
+	const { status } = useAuth();
+	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (status === "LOGGEDIN")
+			navigate("/", {
+				replace: true,
+			});
+	}, [status]);
 
 	const onSubmit: FormEventHandler = (e) => {
 		e.preventDefault();

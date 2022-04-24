@@ -14,6 +14,11 @@ export const register: CaseReducer<rAuth> = (state) => {
 	state.error = "";
 };
 
+export const validated: CaseReducer<rAuth> = (state) => {
+	state.status = "LOGGEDIN";
+	state.error = "";
+};
+
 export const loading: CaseReducer<rAuth> = (state) => {
 	state.status = "LOADING";
 	state.error = "";
