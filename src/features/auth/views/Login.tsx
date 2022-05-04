@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, FormEventHandler, useEffect, useState } from "react";
 import { AuthCredentials } from "../../../types/auth";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import * as authApi from "../../../api/auth.api";
@@ -11,12 +11,13 @@ const Login = () => {
 	const [creds, setCreds] = useState<AuthCredentials>(() => ({ email: "", password: "" }));
 	const { status } = useAuth();
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (status === "LOGGEDIN")
-			navigate("/", {
+			navigate((location.state as any)?.from?.pathname ?? "/", {
 				replace: true,
 			});
 	}, [status]);

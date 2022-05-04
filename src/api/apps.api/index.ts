@@ -1,19 +1,10 @@
-import useAuth from "../../features/auth/hooks/useAuth";
+import { useAxios } from "../../hooks/useAxios";
 import { AppDispatch } from "../../store";
 import { appActions } from "../../store/slices/apps.slice";
 import { AppRegisterDetails, CApp } from "../../types/apps";
-import api from "../../utils/api.util";
 
 export const useAppsApi = () => {
-	const { accessToken } = useAuth();
-
-	api.interceptors.request.use((config) => {
-		config.headers = {
-			...config.headers,
-			Authorization: `Bearer ${accessToken}`,
-		};
-		return config;
-	});
+	const api = useAxios(true);
 
 	const fetchAll = () => async (dispatch: AppDispatch) => {
 		try {

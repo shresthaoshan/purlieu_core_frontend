@@ -1,14 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../../store";
 
 import AppLogo from "../../components/widgets/AppLogo";
 
 import "./styles/auth.styles.scss";
+import useAuth from "./hooks/useAuth";
 
 const AuthModule = () => {
-	const { error } = useAppSelector((state) => state.authReducer);
-	return (
+	const { status, error } = useAuth();
+	return status !== "LOGGEDIN" ? (
 		<div className="auth__page">
 			<div className="auth__container">
 				<AppLogo />
@@ -23,6 +24,8 @@ const AuthModule = () => {
 				</div>
 			</div>
 		</div>
+	) : (
+		<Navigate to="/dashboard/apps" replace />
 	);
 };
 

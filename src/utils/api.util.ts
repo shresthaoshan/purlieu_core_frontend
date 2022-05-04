@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const _config: AxiosRequestConfig = {
+export const _axiosConfig: AxiosRequestConfig = {
 	baseURL: process.env.API_URL ?? "http://localhost:3012/api",
 };
 
-const api = axios.create(_config);
+const api = axios.create(_axiosConfig);
 
 export default api;
