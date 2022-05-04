@@ -4,7 +4,7 @@ import DashboardHeading from "../widgets/DashboardHeading";
 
 import { useApps } from "../hooks/useApps";
 import { History } from "../../../types/history";
-import { useLazyGetHistoryByAppIdQuery } from "../../../store/api/history.api";
+import { useHistoryApi } from "../../../api/history.api";
 
 import "../styles/transactions.styles.scss";
 
@@ -17,6 +17,11 @@ const columns: TableColumn<History>[] = [
 		name: "Transaction ID",
 		selector: (row) => row.transactionId,
 		center: true,
+	},
+	{
+		name: "Amount",
+		cell: (row) => <>Rs. {Number(row.value / 100)}/-</>,
+		right: true,
 	},
 	{
 		name: "Provider",
@@ -34,11 +39,6 @@ const columns: TableColumn<History>[] = [
 		center: true,
 	},
 	{
-		name: "Amount",
-		cell: (row) => <>Rs. {Number(row.value / 100)}/-</>,
-		right: true,
-	},
-	{
 		name: "Remarks",
 		selector: (row) => row.remarks,
 	},
@@ -47,14 +47,12 @@ const columns: TableColumn<History>[] = [
 const Transactions = () => {
 	const { apps } = useApps();
 
-	const [trigger, result] = useLazyGetHistoryByAppIdQuery({
-		refetchOnReconnect: true,
-	});
+	const { fetchByApp, histories } = useHistoryApi();
 
 	const [activeApp, setActiveApp] = useState<string>("");
 
 	useEffect(() => {
-		trigger(activeApp, true);
+		if (activeApp.length) fetchByApp(activeApp);
 	}, [activeApp]);
 
 	return (
@@ -74,7 +72,7 @@ const Transactions = () => {
 					</>
 				}
 			></DashboardHeading>
-			<DataTable columns={columns} data={result.data ?? []} progressPending={result.isFetching || result.isLoading} />
+			<DataTable columns={columns} data={histories.data ?? []} progressPending={histories.status === "LOADING"} />
 		</div>
 	);
 };
