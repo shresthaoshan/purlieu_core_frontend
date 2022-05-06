@@ -37,9 +37,21 @@ export const useAppsApi = () => {
 		}
 	};
 
+	const updateCallback = (appId: string, newCallbackUrl: string) => async (dispatch: AppDispatch) => {
+		try {
+			dispatch(appActions.loading());
+			const { data } = await api.patch(`/apps/${appId}/callback`, { callbackUrl: newCallbackUrl });
+			console.log({ data });
+			dispatch(fetchAll());
+		} catch (e: any) {
+			dispatch(appActions.error(e.config?.response?.error || e.message));
+		}
+	};
+
 	return {
 		fetchAll,
 		fetchOne,
 		register,
+		updateCallback,
 	};
 };

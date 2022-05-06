@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEventHandler } from "react";
+import React, { useEffect, useState, ChangeEventHandler, FormEventHandler } from "react";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../store";
@@ -11,9 +11,11 @@ import { CApp } from "../../../types/apps";
 import "../styles/appdetails.styles.scss";
 import { format } from "date-fns";
 import { AiOutlineEdit } from "react-icons/ai";
+import { useAppsApi } from "../../../api/apps.api";
 
 const AppDetails = () => {
 	const { appId = "" } = useParams();
+	const { updateCallback } = useAppsApi();
 
 	const { appDetail } = useApps();
 	const [localData, setLocalData] = useState<CApp>(() => appDetail);
@@ -31,8 +33,19 @@ const AppDetails = () => {
 		setLocalData(appDetail);
 	}, [appDetail]);
 
+	const onCallbackSubmit: FormEventHandler = (e) => {
+		e.preventDefault();
+		alert(appId);
+		dispatch(updateCallback(appId, localData.callbackUrl));
+	};
+
+	const onNameSubmit: FormEventHandler = (e) => {
+		e.preventDefault();
+		alert(appId);
+	};
+
 	const localUpdate =
-		(field: "name"): ChangeEventHandler<HTMLInputElement> =>
+		(field: "name" | "callbackUrl"): ChangeEventHandler<HTMLInputElement> =>
 		(e) => {
 			setLocalData({
 				...localData,
@@ -59,7 +72,7 @@ const AppDetails = () => {
 					<div className="meta">
 						<p className="label">Application Name</p>
 						{editName ? (
-							<form>
+							<form onSubmit={onNameSubmit}>
 								<div className="form__field">
 									<input type="text" required value={localData.name} onChange={localUpdate("name")} />
 									<div className="controls">
@@ -86,13 +99,13 @@ const AppDetails = () => {
 					<div className="meta">
 						<p className="label">Callback Url</p>
 						{editCallback ? (
-							<form>
+							<form onSubmit={onCallbackSubmit}>
 								<div className="form__field">
 									<input
 										type="text"
 										placeholder="*https://somedomain.com/webhook"
 										value={localData.callbackUrl || ""}
-										onChange={localUpdate("name")}
+										onChange={localUpdate("callbackUrl")}
 									/>
 									<div className="controls">
 										<button type="submit">Update</button>
